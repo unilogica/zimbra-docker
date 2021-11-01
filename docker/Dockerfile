@@ -3,7 +3,7 @@
 # Based on Ubuntu 16.04
 # Created by Jorge de la Cruz
 #################################################################
-FROM ubuntu:16.04
+FROM ubuntu:bionic
 MAINTAINER Jorge de la Cruz <jorgedlcruz@gmail.com>
 
 RUN echo "resolvconf resolvconf/linkify-resolvconf boolean false" | debconf-set-selections
