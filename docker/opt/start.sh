@@ -1,6 +1,10 @@
 #!/bin/sh
 ## Preparing all the variables like IP, Hostname, etc, all of them from the container
 sleep 5
+
+echo "Updating hostname to $EXTERNAL_HOST_FQDN"
+hostname $EXTERNAL_HOST_FQDN
+
 HOSTNAME=$(hostname -a)
 DOMAIN=$(hostname -d)
 CONTAINERIP=$(ip addr | grep 'state UP' -A2 | tail -n1 | awk '{print $2}' | cut -f1  -d'/')
@@ -136,9 +140,6 @@ tar xzvf /opt/zimbra-install/zimbra-zcs-8.8.15.tar.gz -C /opt/zimbra-install/
 
 echo "Update package cache"
 apt update
-
-echo "Updating hostname to $EXTERNAL_HOST_FQDN"
-hostname $EXTERNAL_HOST_FQDN
 
 echo "Installing Zimbra Collaboration just the Software"
 cd /opt/zimbra-install/zcs-* && ./install.sh -s < /opt/zimbra-install/installZimbra-keystrokes
